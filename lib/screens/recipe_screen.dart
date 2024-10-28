@@ -35,6 +35,7 @@ class RecipeScreen extends ConsumerWidget {
                           fit: BoxFit.cover),
                     ),
                   ),
+                  //Contenedor para mostrar más datos de la receta
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: Padding(
@@ -64,6 +65,7 @@ class RecipeScreen extends ConsumerWidget {
                                   ),
                                 ),
                               ),
+                              //Para tener espacio entre los chips
                               SizedBox(width: 10),
                               Chip(
                                 backgroundColor: Colors.deepOrangeAccent,
@@ -87,43 +89,50 @@ class RecipeScreen extends ConsumerWidget {
                             "Ingredientes:",
                             style: textStyle(25, Colors.black, FontWeight.w800),
                           ),
+                          //Para tener espacio
                           SizedBox(
                             height: 15,
                           ),
+                          //Listado horizontal de ingredientes
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
                                 children: recipe.ingredients.map((ingredient) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    // Añadir separación horizontal
-                                    horizontal: 15.0),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      ingredient.name,
-                                      style: textStyle(
-                                          20, Colors.black, FontWeight.w800),
-                                    ),
-                                    SizedBox(height: 7),
-                                    Text(
-                                      ingredient.measure,
-                                      style: textStyle(
-                                          16, Colors.grey, FontWeight.w800),
-                                    ),
-                                  ],
-                                ),
+                              return Column(
+                                //Acá tiene que ir la imagen y el texto
+                                children: [
+                                  Image(
+                                    width: 100,
+                                    height: 100,
+                                    image: NetworkImage(
+                                        'https://www.themealdb.com/images/ingredients/${ingredient.name}.png'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    ingredient.name,
+                                    style: textStyle(
+                                        20, Colors.black, FontWeight.w800),
+                                  ),
+                                  SizedBox(height: 7),
+                                  Text(
+                                    ingredient.measure,
+                                    style: textStyle(
+                                        16, Colors.grey, FontWeight.w800),
+                                  ),
+                                ],
                               );
                             }).toList()),
                           ),
+                          //Espacio
                           SizedBox(height: 10),
                           Text(
                             "Instrucciones",
                             style: textStyle(25, Colors.black, FontWeight.w800),
                           ),
+                          //Para tener espacio
                           SizedBox(
                             height: 15,
                           ),
